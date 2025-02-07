@@ -1,0 +1,12 @@
+version: '3'
+services:
+  data_anally_container:
+    restart: always
+    build: .
+    container_name: 'data_anally_container'
+    working_dir: '/root/opt/'
+    tty: true
+    volumes:
+      - ./opt:/root/opt
+      - ./opt:/root/opt
+      - ./tmp:/root/tmp
