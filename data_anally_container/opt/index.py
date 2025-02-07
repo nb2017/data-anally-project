@@ -4,7 +4,7 @@ import json
 import os
 from modules import image_anally as ia
 from modules.log_decorator import log_execution
-from common import const, util
+from common import const
 from logging import getLogger, config
 
 
