@@ -1,6 +1,6 @@
 version: '3'
 services:
-  web_market_anally_container:
+  data_anally_project:
     restart: always
     build: .
     container_name: 'web_market_anally_container'

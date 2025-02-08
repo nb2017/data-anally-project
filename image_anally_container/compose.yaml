@@ -1,12 +1,11 @@
 version: '3'
 services:
-  image_anally_container:
+  data_anally_project:
     restart: always
     build: .
     container_name: 'image_anally_container'
     working_dir: '/root/opt/'
     tty: true
     volumes:
-      - ./opt:/root/opt
       - ./opt:/root/opt
       - ./tmp:/root/tmp
