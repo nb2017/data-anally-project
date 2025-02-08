@@ -1,5 +1,5 @@
 from modules.web_anally_mng import analizeUrlBase
-from modules.log_decorator import logger
+from common.log_decorator import logger
 
 
 ROOT_URL = r'https://www.u-can.co.jp'
@@ -24,10 +24,17 @@ class youcanAnalize(analizeUrlBase):
             # カテゴリ内の商品リストを取得
             course_list = course_category.find('ul', class_=COURSE_LIST_CLASS).find_all('li', class_='course-list__item')
             for course in course_list:
-                # 商品情報のURLリンクを取得
-                course_detail_link = ROOT_URL + course.find('a', class_=COURSE_LIST_LINK).attrs['href']
-                logger.debug(f'course link = {course_detail_link}')
-                # リンク先のページ情報を取得
-                title, body = self.get_html_from_url(course_detail_link)
-                # 商品価格を取得
-
+                self.analize_course(course)
+    
+    def analize_course(self, course):
+        """ユーキャンの講座の詳細ページの解析
+        """
+        # 商品情報のURLリンクを取得
+        course_detail_link = ROOT_URL + course.find('a', class_=COURSE_LIST_LINK).attrs['href']
+        # リンク先のページ情報を取得
+        title, body = self.get_html_from_url(course_detail_link)
+        # 商品価格を取得
+        cost = body.find('span', class_='cost-text')
+        if cost:
+            total_ammount = cost.find('span', class_='cost-text__ammount').text
+            logger.debug(f'total ammount = {total_ammount}')

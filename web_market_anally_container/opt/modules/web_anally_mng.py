@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as bs
 from bs4.element import Tag
-from modules.log_decorator import logger
 
 class analizeUrlBase():
     def __init__(self, url):
@@ -22,9 +21,10 @@ class analizeUrlBase():
             tuple: 解析したHTMLのtitleとbody
         """
         r = requests.get(url)
-        logger.debug(f'requests response = {r}')
+        r.encoding = 'utf-8'
+        html = r.text
         # HTMLを解析
-        soup = bs(r.text, 'html.parser')
+        soup = bs(html, 'html.parser')
 
         # 解析したHTMLから任意の部分のみを抽出（ここではtitleとbody）
         title = soup.find("title")
