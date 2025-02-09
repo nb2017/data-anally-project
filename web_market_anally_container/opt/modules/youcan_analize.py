@@ -50,7 +50,7 @@ class youcanAnalize(analizeUrlBase):
         ammount = ''
         if cost:
             total_ammount = cost.find('span', class_='cost-text__ammount').text
-            ammount = re.search(r'総計:(?P<ammount>\d+,\d+)円', total_ammount).group('ammount') \
+            ammount = re.search(r'総計:(?P<ammount>\d+,\d+円)', total_ammount).group('ammount') \
                 .replace(',', '')
         else:
             # 料金表示がない場合は休講
