@@ -3,9 +3,8 @@ services:
   data_anally_project:
     restart: always
     build: .
-    container_name: 'image_anally_container'
+    container_name: 'web_market_anally_container'
     working_dir: '/root/opt/'
     tty: true
     volumes:
       - ./opt:/root/opt
-      - ./tmp:/root/tmp
