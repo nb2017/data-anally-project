@@ -4,10 +4,10 @@ from bs4.element import Tag
 
 class analizeUrlBase():
     def __init__(self, url):
+        self.course_defail_list = []
+        self.service = ''
         title, body = self.get_html_from_url(url)
-        if title is None or body is None:
-            pass
-        else:
+        if title and body:
             self.title = title
             self.body = body
 
@@ -30,3 +30,6 @@ class analizeUrlBase():
         title = soup.find("title")
         body = soup.find("body")
         return title, body
+    
+    def get_anallized_data(self) -> list:
+        return self.course_defail_list
