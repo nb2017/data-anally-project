@@ -11,3 +11,4 @@ LOG_LEVEL = {
     'INFO': logging.INFO
 }
 
+COURSE_INFO_MSG = '講座名: {course_name}, 総額: {course_ammount}円, リンク: {course_link}'

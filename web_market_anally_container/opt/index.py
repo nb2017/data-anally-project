@@ -1,10 +1,10 @@
-from common.log_decorator import log_execution
-from modules.youcan_analize import youcanAnalize
+from common.log_decorator import log_execution, logger
+from modules.youcan_analize import youcanAnalize, analizeUrlBase
 
 
 @log_execution
 def main():
-    youcan = youcanAnalize()
+    youcanAnalize()
 
 
 if __name__ == "__main__":
