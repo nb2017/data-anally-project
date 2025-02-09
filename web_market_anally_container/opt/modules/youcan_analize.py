@@ -14,8 +14,8 @@ COURSE_LIST_LINK = r'course-list__link'
 class youcanAnalize(analizeUrlBase):
     def __init__(self):
         super().__init__(TOP_MENU_URL)
-        self.course_defail_list = []
         self.analize()
+        self.service = const.SERVICE_NAME_YOUCAN
 
     def analize(self):
         """ユーキャンの商品ページ解析
@@ -47,11 +47,14 @@ class youcanAnalize(analizeUrlBase):
         title, body = self.get_html_from_url(course_detail_link)
         # 商品価格を取得
         cost = body.find('span', class_='cost-text')
-        ammount = '0'
+        ammount = ''
         if cost:
             total_ammount = cost.find('span', class_='cost-text__ammount').text
             ammount = re.search(r'総計:(?P<ammount>\d+,\d+)円', total_ammount).group('ammount') \
                 .replace(',', '')
+        else:
+            # 料金表示がない場合は休講
+            ammount = '休講'
 
         return {
             'course_name': course_name,
